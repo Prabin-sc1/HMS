@@ -4,6 +4,10 @@ public class Specialist {
 	private int id;
 	private String specName;
 	
+	public Specialist() {
+		
+	}
+	
 	public Specialist(int id, String specName) {
 		super();
 		this.id = id;

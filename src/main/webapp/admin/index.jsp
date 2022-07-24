@@ -16,10 +16,12 @@
 	box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
 }
 </style>
-</head>
-<body>
+
 	<%@include file="navbar.jsp"%>
 	<%@include file="../component/allcss.jsp"%>
+
+</head>
+<body>
 
 
 	<c:if test="${ empty adminObj }">
