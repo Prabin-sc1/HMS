@@ -4,4 +4,14 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
+  <servlet>
+  	<servlet-name>AddDoctor</servlet-name>
+  	<display-name>AddDoctor</display-name>
+  	<description></description>
+  	<servlet-class>com.admin.servlet.AddDoctor</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>AddDoctor</servlet-name>
+  	<url-pattern>/AddDoctor</url-pattern>
+  </servlet-mapping>
 </web-app>

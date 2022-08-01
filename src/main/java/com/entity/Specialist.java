@@ -29,10 +29,5 @@ public class Specialist {
 	public void setSpecName(String specName) {
 		this.specName = specName;
 	}
-	
-	
-	
-	
-	
 
 }

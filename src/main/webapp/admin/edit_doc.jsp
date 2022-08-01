@@ -31,10 +31,10 @@
 	<div class="container-fluid p-3">
 		<div class="row">
 
-			<div class="col-md-4">
+			<div class="col-md-4 offset-md-4">
 				<div class="card paint-card">
 					<div class="card-body">
-						<p class="fs-3 text-center">Add Doctor</p>
+						<p class="fs-3 text-center">Edit Doctor Details</p>
 						<c:if test="${not empty sucMsg}">
 							<p class="text-center text-success fs-5">${sucMsg }</p>
 							<c:remove var="sucMsg" scope="session" />
@@ -46,26 +46,32 @@
 							<c:remove var="failMsg" scope="session" />
 						</c:if>
 
-						<form action="../addDoctor" method="post">
+						<%
+						int id = Integer.parseInt(request.getParameter("id"));
+						DoctorDao dao2 = new DoctorDao(DbConnection.getDbConnection());
+						Doctor d = dao2.getDoctorById(id);
+						%>
+
+						<form action="../updateDoctor" method="post">
 							<div class="mb-3">
 								<label class="form-label">Full Name</label><input type="text"
-									required name="fullname" class="form-control">
+									required name="fullname" class="form-control" value="<%=d.getFullName() %>">
 							</div>
 
 							<div class="mb-3">
 								<label class="form-label">DOB</label><input type="date" required
-									name="dob" class="form-control">
+									name="dob" class="form-control" value ="<%=d.getDob() %>">
 							</div>
 
 							<div class="mb-3">
 								<label class="form-label">Qualification</label><input
-									type="text" required name="qualification" class="form-control">
+									type="text" required name="qualification" class="form-control" value="<%=d.getQualification() %>">
 							</div>
 
 							<div class="mb-3">
 								<label class="form-label">Specialist</label> <select name="spec"
 									required class="form-control">
-									<option>--Select--</option>
+									<option><%=d.getSpecialist() %></option>
 									<%
 									SpecDao dao = new SpecDao(DbConnection.getDbConnection());
 
@@ -85,73 +91,24 @@
 
 							<div class="mb-3">
 								<label class="form-label">Email</label><input type="text"
-									required name="email" class="form-control">
+									required name="email" class="form-control"
+									value="<%=d.getEmail() %>">
 							</div>
 
 							<div class="mb-3">
 								<label class="form-label">Mobile No.</label><input type="text"
-									required name="mobno" class="form-control">
+									required name="mobno" class="form-control" value="<%=d.getPhone() %>">
 							</div>
 
 							<div class="mb-3">
 								<label class="form-label">Password</label><input type="password"
-									required name="password" class="form-control">
+									required name="password" class="form-control" value="<%=d.getPassword() %>">
 							</div>
+							<input type="hidden" name="id" value="<%= d.getId() %>">
 
-							<button type="submit" class="btn btn-primary">Submit</button>
+							<button type="submit" class="btn btn-primary col-md-12">Update</button>
 						</form>
 
-					</div>
-
-				</div>
-
-			</div>
-
-
-
-			<div class="col-md-8">
-				<div class="card paint-card">
-					<div class="card-body">
-						<p class="fs-3 text-center">Doctor Details</p>
-						<table class="table">
-							<thead>
-								<tr>
-									<th scope="col">Name</th>
-									<th scope="col">DOB</th>
-									<th scope="col">Qualification</th>
-									<th scope="col">Specialist</th>
-									<th scope="col">Email</th>
-									<th scope="col">Mob No</th>
-									<th scope="col">Action</th>
-								</tr>
-							</thead>
-							<tbody>
-								<%
-								DoctorDao d = new DoctorDao(DbConnection.getDbConnection());
-								List<Doctor> l = d.getAllDoctor();
-								for (Doctor doc : l) {
-								%>
-								<tr>
-									<td><%=doc.getFullName() %></td>
-									<td><%=doc.getDob() %></td>
-									<td><%=doc.getQualification() %></td>
-									<td><%=doc.getSpecialist() %></td>
-									<td><%=doc.getEmail() %></td>
-									<td><%=doc.getPhone() %></td>
-									<td>
-									<a href="edit_doc.jsp?id=<%=doc.getId() %>" class="btn btn-primary">Edit</a>
-									<a href="#" class="btn btn-danger">Delete</a>
-									</td>
-								</tr>
-
-								<%
-								}
-								%>
-
-							</tbody>
-
-
-						</table>
 					</div>
 
 				</div>
