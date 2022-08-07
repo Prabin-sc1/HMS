@@ -36,7 +36,7 @@ public class UpdateDoc extends HttpServlet{
 				session.setAttribute("sucMsg", "Doctor Updated Successfully!");
 				resp.sendRedirect("admin/doctor.jsp");
 			} else {
-				session.setAttribute("failMsg", "Something on server");
+				session.setAttribute("failMsg", "Something error on server");
 				resp.sendRedirect("admin/doctor.jsp");
 			}
 

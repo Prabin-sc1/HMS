@@ -1,3 +1,5 @@
+<%@page import="com.dbconnection.DbConnection"%>
+<%@page import="com.dao.DoctorDao"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 
@@ -17,8 +19,8 @@
 }
 </style>
 
-	<%@include file="navbar.jsp"%>
-	<%@include file="../component/allcss.jsp"%>
+<%@include file="navbar.jsp"%>
+<%@include file="../component/allcss.jsp"%>
 
 </head>
 <body>
@@ -44,14 +46,16 @@
 			<p class="text-center text-danger fs-5">${failMsg }</p>
 			<c:remove var="failMsg" scope="session" />
 		</c:if>
-
+		<%
+		DoctorDao d = new DoctorDao(DbConnection.getDbConnection());
+		%>
 		<div class="row">
 			<div class="col-md-4">
 				<div class="card paint-card">
 					<div class="card-body text-center text-success">
 						<i class="fas fa-user-md fa-3x"></i><br>
 						<p class="fs-4 text-center">
-							Doctor<br>5
+							Doctor<br><%=d.countDoctor()%>
 						</p>
 					</div>
 				</div>
@@ -62,7 +66,7 @@
 					<div class="card-body text-center text-success">
 						<i class="fas fa-user-circle fa-3x"></i><br>
 						<p class="fs-4 text-center">
-							User<br>540
+							User<br><%=d.countUser()%>
 						</p>
 					</div>
 				</div>
@@ -74,7 +78,7 @@
 					<div class="card-body text-center text-success">
 						<i class="far fa-calendar-check fa-3x"></i><br>
 						<p class="fs-4 text-center">
-							Appointment<br>110
+							Appointment<br><%=d.countAppointment()%>
 						</p>
 					</div>
 				</div>
@@ -87,7 +91,7 @@
 					<div class="card-body text-center text-success">
 						<i class="far fa-calendar-check fa-3x"></i><br>
 						<p class="fs-4 text-center">
-							Specialist<br>51
+							Specialist<br><%=d.countSpecialist()%>
 						</p>
 					</div>
 				</div>

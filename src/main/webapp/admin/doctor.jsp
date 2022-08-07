@@ -35,15 +35,16 @@
 				<div class="card paint-card">
 					<div class="card-body">
 						<p class="fs-3 text-center">Add Doctor</p>
-						<c:if test="${not empty sucMsg}">
-							<p class="text-center text-success fs-5">${sucMsg }</p>
-							<c:remove var="sucMsg" scope="session" />
+
+						<c:if test="${not empty succMsg}">
+							<p class="text-center text-success fs-5">${succMsg }</p>
+							<c:remove var="succMsg" scope="session" />
 						</c:if>
 
 
-						<c:if test="${not empty failMsg}">
-							<p class="text-center text-danger fs-5">${failMsg }</p>
-							<c:remove var="failMsg" scope="session" />
+						<c:if test="${not empty faillMsg}">
+							<p class="text-center text-danger fs-5">${faillMsg }</p>
+							<c:remove var="faillMsg" scope="session" />
 						</c:if>
 
 						<form action="../addDoctor" method="post">
@@ -113,6 +114,18 @@
 				<div class="card paint-card">
 					<div class="card-body">
 						<p class="fs-3 text-center">Doctor Details</p>
+
+						<c:if test="${not empty sucMsg}">
+							<p class="text-center text-success fs-5">${sucMsg }</p>
+							<c:remove var="sucMsg" scope="session" />
+						</c:if>
+
+
+						<c:if test="${not empty failMsg}">
+							<p class="text-center text-danger fs-5">${failMsg }</p>
+							<c:remove var="failMsg" scope="session" />
+						</c:if>
+
 						<table class="table">
 							<thead>
 								<tr>
@@ -121,7 +134,7 @@
 									<th scope="col">Qualification</th>
 									<th scope="col">Specialist</th>
 									<th scope="col">Email</th>
-									<th scope="col">Mob No</th>
+									<th scope="col">Phone</th>
 									<th scope="col">Action</th>
 								</tr>
 							</thead>
@@ -132,16 +145,16 @@
 								for (Doctor doc : l) {
 								%>
 								<tr>
-									<td><%=doc.getFullName() %></td>
-									<td><%=doc.getDob() %></td>
-									<td><%=doc.getQualification() %></td>
-									<td><%=doc.getSpecialist() %></td>
-									<td><%=doc.getEmail() %></td>
-									<td><%=doc.getPhone() %></td>
-									<td>
-									<a href="edit_doc.jsp?id=<%=doc.getId() %>" class="btn btn-primary">Edit</a>
-									<a href="#" class="btn btn-danger">Delete</a>
-									</td>
+									<td><%=doc.getFullName()%></td>
+									<td><%=doc.getDob()%></td>
+									<td><%=doc.getQualification()%></td>
+									<td><%=doc.getSpecialist()%></td>
+									<td><%=doc.getEmail()%></td>
+									<td><%=doc.getPhone()%></td>
+									<td><a href="edit_doc.jsp?id=<%=doc.getId()%>"
+										class="btn btn-primary">Edit</a> <a
+										href="../deleteDoctor?id=<%=doc.getId()%>"
+										class="btn btn-danger">Delete</a></td>
 								</tr>
 
 								<%
